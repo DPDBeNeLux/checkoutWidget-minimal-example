@@ -28,6 +28,23 @@
   	</style>
   	<script src="https://widgets.dpd.nl/widgets/Scripts/checkoutWidget/init.js"></script>
   	<script>
+  	  /* Define the callback function, what to do with the data the widget returns. */
+  	  function callback(data){
+  	    // For this example we just print a nice little message in an extra container, you can use this to write to your database etc...
+  			var divResult = document.getElementById("widget_result");
+  			
+  			// data is a json object zo we can directly access the product variable
+  			switch(data.product){
+  				case "DPDHome":
+  					divResult.innerHTML = "You have chosen for a Home Delivery on address: <br><strong>" + data.consumerInfo.address.street + " " + data.consumerInfo.address.houseNumber + ", " + data.consumerInfo.address.postalCode + " " + data.consumerInfo.address.city + "</strong>";
+  					break;
+  				case "DPDParcelshop":
+  					divResult.innerHTML = "You have chosen for a ParcelShop Delivery in shop: <strong>" + data.parcelShop.name + "</strong><br> with address: <br><strong>" + data.parcelShop.address.street + " " + data.parcelShop.address.houseNumber + ", " + data.parcelShop.address.postalCode + " " + data.parcelShop.address.city + "</strong>";
+  					break;
+  				default:
+  			}
+  		}
+
   		function initWidget(){
   		  // Create the config array.
   			var config = {
@@ -98,6 +115,7 @@
   				<div id="widget_container">
   					<div id="dpd_widget_container"></div>
   				</div>
+  				<div id="widget_result"></div>
   			</div>
   		</div>
   	</div>
