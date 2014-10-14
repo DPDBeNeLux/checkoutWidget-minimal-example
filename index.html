@@ -27,6 +27,38 @@
   		}
   	</style>
   	<script src="https://widgets.dpd.nl/widgets/Scripts/checkoutWidget/init.js"></script>
+  	<script>
+  		function initWidget(){
+  		  // Create the config array.
+  			var config = {
+  				"order": {
+  					"orderNumber": "123456",  // Your order number - Get this out of your system
+  					"orderPrice": "12.50", 		// Order price (used for table rate price calculation) - Get this out of your system
+  					"orderWeight": "2.5" 		  // Order weight (used for price calculation) - Get this out of your system
+  				},
+  				"integrationType": "inline",// Inline or overlay
+  				"locale": "nl_BE",          // Language _ Country
+  				"apiKey": "",               // YOUR API KEY
+  				"divId": 'dpd_widget_container', // The container ID
+  				"consumerInfo": {           // Information out of the form
+  					"name": document.getElementById("txtCneeFirstName").value + " " + document.getElementById("txtCneeLastName").value,
+  					"email": document.getElementById("txtCneeEmail").value,
+  					"phoneNumber": document.getElementById("txtCneePhone").value,
+  					"address": {
+  					  "street": document.getElementById("txtCneeStreet").value,
+  					  "houseNumber": document.getElementById("txtCneeHouseNo").value,
+  					  "houseNumberAddition": null,
+  					  "postalCode": document.getElementById("txtCneeCode").value,
+  					  "city": document.getElementById("txtCneeCity").value,
+  					  "countryISO": "BE"      // You can add an extra field to the form for country code for other countries. Or change it here just for testing purposes.
+  					}
+  				  }
+  				};
+  			
+  			// Call the startCheckoutWidget function with config array and callback function name.
+  			startCheckoutWidget(config, callback);
+  		}
+  	</script>
   </head>
   <body>
   	<div id="main_container">
